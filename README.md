@@ -1,2 +1,2 @@
-# Team3
-Project 1 by Ben Markos & David
+Project 1
+Ben Markos and David Nhem
