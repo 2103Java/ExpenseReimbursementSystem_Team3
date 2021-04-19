@@ -2,7 +2,7 @@ Project 1
 
 Authors: Ben Markos and David Nhem
 
-This is the GitHub repository of Revature group project (Project 1) called Expense Reimbursement System. This program will run on Java Maven Webapp structure. The main requirements of the project is to "manage the process of reimbursing employees for expenses incurred while on company time. All employees in the company can log in and submit requests for reimbursement and view their past tickets and pending requests. Finance managers can log in and view all reimbursement requests and past history for all employees in the company. Finance managers are authorized to approve and deny requests for expense reimbursement."
+This is the GitHub repository of Revature group project (Project 1) called Expense Reimbursement System. This program will run on Java Maven Webapp structure. The main requirement of the project is to "manage the process of reimbursing employees for expenses incurred while on company time. All employees in the company can log in and submit requests for reimbursement and view their past tickets and pending requests. Finance managers can log in and view all reimbursement requests and past history for all employees in the company. Finance managers are authorized to approve and deny requests for expense reimbursement."
 
 Other required features need to be implemented in the project:
 
