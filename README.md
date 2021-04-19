@@ -6,6 +6,11 @@ This is the GitHub repository of Revature group project (Project 1) called Expen
 
 Other required features need to be implemented in the project:
 
--Must use design patterns to organize codes and logics. In this project, DAO and Front-Controller Design Pattern will be used. -Must use PostgresSQL with JDBC as well as ER tables in 3rd Normal Form. -Use AWS RDS for Database hosting. -Must deploy program to Tomcat Server. -Use Java Servlet -Must be coded in Java, Html, Css, JavaScript. -have unit testing with JUnit, Mockito, and Postman.
+-Must use design patterns to organize codes and logics. In this project, DAO and Front-Controller Design Pattern will be used. 
+-Must use PostgresSQL with JDBC as well as ER tables in 3rd Normal Form. 
+-Use AWS RDS for Database hosting. 
+-Must deploy program to Tomcat Server. 
+-Use Java Servlet -Must be coded in Java, Html, Css, JavaScript. 
+-have unit testing with JUnit, Mockito, and Postman.
 
 *** This repo is for Team 3's Project 1 (Ben Markos and Seoung-David Nhem). ***
