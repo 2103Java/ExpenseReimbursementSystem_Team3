@@ -7,6 +7,7 @@
     <title>JCorp ERS</title>
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
+    <script src="userhome.js"></script>
 </head>
 
 <body class="bg-success bg-gradient min-vh-100">
@@ -28,6 +29,16 @@
     <input type = "text" id ="myid" placeholder="Please fill out your reimbursement request here" class = "form-control" >
     <button type="button" id ="mybutton" class="btn btn-danger">Submit your ticket</button>
 </div>
-<!--<script src="ajax.js"></script>-->
+<!----------------------------------------------------------------------------------------------------------------->
+
+
+<h1 id="mainGreeting" style="text-align: center;"></h1>
+
+<!--    <form action="http://localhost:9500/Money_Please/util/changeloginstatus" method="GET">-->
+<form action="https://localhost:80/Money_Please/util/changeloginstatus" method="GET">
+    <div style = "text-align:center;">
+        <button type="submit" value="Submit"> Log out </button>
+    </div>
+</form>
 </body>
 </html>

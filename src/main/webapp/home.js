@@ -4,7 +4,8 @@
 function handleGoToLogInPageButtonClick() {
 
 	console.log(" button clicked 21!");
-	 let baseURL = "http://localhost:9500/Money_Please/site/HomeLogIn";
+	 // let baseURL = "http://localhost:9500/Money_Please/site/HomeLogIn";
+    let baseURL = "http://localhost:80/Money_Please/site/HomeLogIn";
     let xhttp = new XMLHttpRequest();
 
 

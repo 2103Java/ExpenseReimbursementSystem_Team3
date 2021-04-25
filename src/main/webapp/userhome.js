@@ -8,7 +8,8 @@ window.onload = function() {
     /**
      * Get the username from the current HTTP Session & display it as "Welcome, username!" on the userhome.html page
      */
-    let sessionURL = "http://localhost:9500/Money_Please/api/session";
+    // let sessionURL = "http://localhost:9500/Money_Please/api/session";
+    let sessionURL = "http://localhost:80/Money_Please/api/session";
     let xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function(){
