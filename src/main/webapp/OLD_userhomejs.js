@@ -2,6 +2,9 @@ console.log("IN JS FILE");
 
 window.onload = function() {
 
+
+    // REDIRECT TO LOGIN IF SESSION DOES NOT EXIST
+
     // Uses AJAX
 
 	console.log("USER HOME LOADED");
@@ -19,12 +22,14 @@ window.onload = function() {
         if(xhttp.readyState == 4 && xhttp.status == 200){ //checking that process is done and process was successful            
             let usernameToDisplay = JSON.parse(xhttp.responseText);
             console.log(usernameToDisplay);
+            
             document.getElementById("mainGreeting").innerHTML = "Hello, "+usernameToDisplay+"!";
         }
     }
 
 
-    xhttp.open("GET",sessionURL);
+    xhttp.open("GET",sessionURL + "?mode=getUsername");
+
     xhttp.send();
 
 }

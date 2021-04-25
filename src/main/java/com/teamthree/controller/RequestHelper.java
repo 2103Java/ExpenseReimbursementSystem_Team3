@@ -19,7 +19,7 @@ public class RequestHelper {
 	private TicketController ticketController;
 	private SessionController sessionController;
 	private LogInController logInController;
-	
+	private RegistrationController registrationController;
 	
 	
 	
@@ -31,16 +31,17 @@ public class RequestHelper {
 		homeController = new HomeController(helpDesk);
 		sessionController = new SessionController(helpDesk);
 		userController = new UserController(helpDesk);
+		ticketController = new TicketController(helpDesk);
 		logInController = new LogInController(helpDesk);
+		registrationController = new RegistrationController(helpDesk);
 		
 	}
 	
 
 	public void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("---> RequestHelper process(): request type = "+req.getMethod());
 		
 		StringBuffer url = req.getRequestURL();
-		System.out.println("Process --> URL is "+url);
+		System.out.println("URL: "+url +",  method: "+req.getMethod());
 		String uri = req.getRequestURI();
 		String method = req.getMethod();
 
@@ -51,6 +52,7 @@ public class RequestHelper {
 		 * ERS/site/*    ---->   THESE ARE THE VISIBLE HTML PAGES (ie, Home, Login, Register, etc...)
 		 * 
 		 * ERS/api/*   (ERS/api/user & ERS/api/ticket)  -----> THESE ARE THE URLS FOR RETRIEVING, UPDATING, OR DELETING DATABASE ITEMS
+		 * 														USED WITH AJAX IN JAVASCRIPT
 		 * 
 		 * ERS/util/*  -----> THESE ARE THE URLS FOR UTILITY TYPE FUNCTIONS SUCH AS LOGGING IN AND OUT/ CREATING OR INVALIDATING A SESSION.
 		 *                     MOST/ALL OF THESE WILL REDIRECT TO A VISIBLE ERS/site/* URL AFTER THE FUNCTION IS COMPLETE
@@ -89,7 +91,7 @@ public class RequestHelper {
 			System.out.println("REGISTRATION PAGE");
 			
 			this.disablePageCaching(resp);
-			userController.goToRegisterUserPage(req, resp);
+			registrationController.goToRegisterUserPage(req, resp);
 			
 			break;
 			
@@ -116,49 +118,105 @@ public class RequestHelper {
 			
 		case "/ERS/site/RegistrationComplete":
 			
+			this.disablePageCaching(resp);
+			
+			registrationController.goToRegisterSuccessfulPage(req, resp);
 			
 			break;
 			
 			
 		case "/ERS/site/ForgotPassword":
 			
+			this.disablePageCaching(resp);
+			logInController.goToForgotPasswordPage(req, resp);
 			break;
 			
-		case "/ERS/site/ForgotPassword/EmailSent":
+		case "/ERS/site/EmailSent":
 			
+			this.disablePageCaching(resp);
+			logInController.goToRecoveryEmailSendPage(req,resp);
 			break;
 			
 			
 		case "/ERS/site/CreateTicket":
 			
+			this.disablePageCaching(resp);
+			ticketController.goToCreateTicketPage(req, resp);
 			break;
 
 		
 		// ADMIN ONLY
 		case "/ERS/site/ModifyTicket":
 
-			
+			this.disablePageCaching(resp);
+			ticketController.goToModifyTicketPage(req, resp);
 			break;
 			
 			
 			
 		case "/ERS/site/TicketCreated":
 			
+			this.disablePageCaching(resp);
+			ticketController.goToTicketCreatedPage(req, resp);
 			break;
 			
 		
+			
+			
+			
+			
+			
 
-		case "/ERS/api/users":
+		case "/ERS/api/user":
 			
+			switch(method) {
+			
+			case "GET":
+				userController.getUser(req, req);
+				break;
+				
+			case "POST":
+				userController.createNewUser(req, req);
+				break;
+				
+			case "UPDATE":
+				userController.updateUser(req, req);
+				break;
+				
+			case "DELETE":
+				userController.deleteUser(req, req);
+				break;
+				
+			}
+
+			break;
+			
+			
+		case "/ERS/api/ticket":
+			
+			switch(method) {
+			
+			case "GET":
+				ticketController.getTicket(req, req);
+				break;
+				
+			case "POST":
+				ticketController.createNewTicket(req, req);
+				break;
+				
+			case "UPDATE":
+				ticketController.updateTicket(req, req);
+				break;
+				
+			case "DELETE":
+				ticketController.deleteTicket(req, req);
+				break;
+				
+			}
 			break;
 			
 			
 			
-			
-			
-		case "/ERS/api/tickets":
-			
-			break;
 			
 			
 			
@@ -191,7 +249,14 @@ public class RequestHelper {
 				
 				case "GET":
 					System.out.println("Session API: Get");
-					sessionController.putUserForSessionInResponse(req, resp);
+					String mode = req.getParameter("mode");
+					System.out.println("mode is = "+mode);
+					if (mode.equals("getAccessLevel")) {
+						sessionController.getAccessLevel(req, resp);	
+					}
+					else if (mode.equals("getUsername")){
+						sessionController.getUserForSession(req, resp);
+					}
 					break;
 					
 			}

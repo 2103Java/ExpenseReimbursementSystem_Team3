@@ -23,10 +23,14 @@
     </div>
 </div>
 
-<div class = "container">
-    <input type = "text" id ="myid" placeholder="Please fill out your reimbursement request here" class = "form-control" >
-    <button type="button" id ="mybutton" class="btn btn-danger">Submit your ticket</button>
-</div>
+
+<form action = "http://localhost:9500/ERS/api/ticket" method="POST">
+	<div class = "container">
+	    <input type = "text" id ="myid" placeholder="Please fill out your reimbursement request here" class = "form-control" >
+	    <button type="submit" id ="mybutton" class="btn btn-danger">Submit your ticket</button>
+	</div>
+</form>
+
 <!--<script src="ajax.js"></script>-->
 </body>
 </html>

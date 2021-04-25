@@ -47,11 +47,5 @@ public class UserController {
 		
 	}
 	
-	public void goToRegisterUserPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		RequestDispatcher userHomeDispatcher = req.getRequestDispatcher("/register.html");
-		userHomeDispatcher.forward(req, resp);
-		
-	}
 	
 }

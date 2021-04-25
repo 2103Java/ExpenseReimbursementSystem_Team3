@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,12 +18,17 @@ public class SessionController {
 		this.helpDesk = helpDesk;
 	}
 
-	public void putUserForSessionInResponse(HttpServletRequest req, HttpServletResponse resp) throws JsonProcessingException, IOException {
+	
+	
+	public void getUserForSession(HttpServletRequest req, HttpServletResponse resp) throws JsonProcessingException, IOException {
 		
-		System.out.println("********************** Sending user session name in response");
+		System.out.println("");
+		System.out.println("************* Sending user session name in response");
 		// getSessionUser(req, resp) gives an HTTP response with
 		// a JSON object for the current session user, if there is one,
 		// otherwise null is returned
+		
+		
 		if (req.getSession(false) != null) {
 			resp.setContentType("json/application");
 			ObjectMapper om = new ObjectMapper();
@@ -32,5 +38,21 @@ public class SessionController {
 		
 	}
 	
+	
+	public void getAccessLevel(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		
+		// Give an HTTP Response with level = none, customer, or admin
+		
+		HttpSession session = req.getSession(false);
+		
+		if (session == null) {
+			resp.getWriter().write("none");
+		}
+		else {
+			resp.getWriter().write("customer");			
+		}
+		
+		
+	}
 	
 }

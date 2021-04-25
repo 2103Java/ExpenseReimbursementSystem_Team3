@@ -73,9 +73,21 @@ public class LogInController {
 	
 	
 	
-	public void goToLogInPage(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	
+	
+	public void goToForgotPasswordPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		resp.sendRedirect("/ERS/site/LogIn");
+		System.out.println("GOTOFORGOTPASSWORDPAGE method start");
+		RequestDispatcher fPWDispatcher = req.getRequestDispatcher("/TEST_forgotpassword.html");
+		fPWDispatcher.forward(req, resp);
+		
+	}
+
+	public void goToRecoveryEmailSendPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		System.out.println("GOTORECOVERYEMAILSENTPAGE method start");
+		RequestDispatcher emailSentDispatcher = req.getRequestDispatcher("/TEST_recoveryemailsent.html");
+		emailSentDispatcher.forward(req, resp);
 		
 	}
 	
