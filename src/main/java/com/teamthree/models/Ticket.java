@@ -1,32 +1,39 @@
 package com.teamthree.models;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 public class Ticket {
 
-	private int id;  // unique primary key
+	private Integer id;  // unique primary key
+	private String status;
 	private double reimburseAmount;
-	private double timeStamp;
+	private Timestamp timeStamp;
 	private String description;
 	private String username;  // foreign key into the User table
+	private String type;
 	
 	
 	
 	
-	public Ticket(int id, double reimburseAmount, double timeStamp, String description, String username) {
+	public Ticket(Integer id, String status, double reimburseAmount, Timestamp timeStamp, String description, String username, String type) {
 		
 		super();
 		this.id = id;
+		this.status = status;
 		this.reimburseAmount = reimburseAmount;
 		this.timeStamp = timeStamp;
 		this.description = description;
 		this.username = username;
+		this.type = type;
 		
 	}
 	
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public double getReimburseAmount() {
@@ -35,10 +42,10 @@ public class Ticket {
 	public void setReimburseAmount(double reimburseAmount) {
 		this.reimburseAmount = reimburseAmount;
 	}
-	public double getTimeStamp() {
+	public Timestamp getTimeStamp() {
 		return timeStamp;
 	}
-	public void setTimeStamp(double timeStamp) {
+	public void setTimeStamp(Timestamp timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 	public String getDescription() {
@@ -53,6 +60,28 @@ public class Ticket {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+
+	public String getType() {
+		return type;
+	}
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
 	
 	
 }

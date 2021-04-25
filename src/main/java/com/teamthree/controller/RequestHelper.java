@@ -6,9 +6,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.teamthree.dao.TicketDaoImpl;
+import com.teamthree.dao.UserDaoImpl;
 import com.teamthree.service.HelpDesk;
 
 public class RequestHelper {
+	
+	// Repository Layer
+	private UserDaoImpl userDao;
+	private TicketDaoImpl ticketDao;
 	
 	// Service layer
 	private HelpDesk helpDesk;
@@ -26,7 +32,10 @@ public class RequestHelper {
 	
 	public RequestHelper() {
 		
-		helpDesk = new HelpDesk();
+		userDao = new UserDaoImpl();
+		ticketDao = new TicketDaoImpl();
+		
+		helpDesk = new HelpDesk(userDao, ticketDao);
 		
 		homeController = new HomeController(helpDesk);
 		sessionController = new SessionController(helpDesk);

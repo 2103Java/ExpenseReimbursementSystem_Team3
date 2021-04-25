@@ -14,10 +14,6 @@ public class Connector {
 	
 	public static Connection getConnection() {
 		
-		System.out.println("URL = "+ URL);
-		System.out.println("USERNAME = "+ USERNAME);
-		System.out.println("PASSWORD = "+ PASSWORD);
-		
 		try {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 		} catch (SQLException e) {
