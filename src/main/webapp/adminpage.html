@@ -30,6 +30,7 @@
     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
       <li><a class="dropdown-item" href="#" id="view_tickets">View Tickets</a></li>
       <li><a class="dropdown-item" href="#" id="submit_ticket" data-bs-toggle="modal" data-bs-target="#submit_form_modal" data-bs-whatever="Please fill out info">Submit Ticket</a></li>
+      <li><a class="dropdown-item" href="#" id="process_ticket" data-bs-toggle="modal" data-bs-target="#process_form_modal" data-bs-whatever="Please fill out info">Process Ticket</a></li>
       <li><a class="dropdown-item" href="#"></a></li>
       <li><hr class="dropdown-divider"></li>
       <li><a class="dropdown-item" href="#">Sign out</a></li>
@@ -69,6 +70,69 @@
       <div class="modal-footer">
         <!--				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Submit Ticket</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="process_form_modal" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Manage Tickets</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <select class="form-select" aria-label="Default select example" id="select_box2" onfocus="this.size=5;" onblur="this.size=1;" onchange="this.size=1; this.blur();">
+              <option selected>Please select ticket ID:</option>
+              <option value="1">20123678293</option>
+              <option value="2">34767198908</option>
+              <option value="3">76320123478</option>
+              <option value="3">97238012392</option>
+              <option value="1">20123678293</option>
+              <option value="2">34767198908</option>
+              <option value="3">76320123478</option>
+              <option value="3">97238012392</option>
+              <option value="1">20123678293</option>
+              <option value="2">34767198908</option>
+              <option value="3">76320123478</option>
+              <option value="3">97238012392</option>
+              <option value="1">20123678293</option>
+              <option value="2">34767198908</option>
+              <option value="3">76320123478</option>
+              <option value="3">97238012392</option>
+              <option value="1">20123678293</option>
+              <option value="2">34767198908</option>
+              <option value="3">76320123478</option>
+              <option value="3">97238012392</option>
+            </select>
+          </div>
+          <div class="mb-3">
+<!--            <label for="reimbursement_amount" class="col-form-label">Approve or Reject ?</label>-->
+            <div class="form-check form-check-inline" >
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+              <label class="form-check-label" for="flexRadioDefault1">
+                Approve
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+              <label class="form-check-label" for="flexRadioDefault2">
+                Reject
+              </label>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Add comments:</label>
+            <textarea class="form-control" id="message-text2"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <!--				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Confirm</button>
       </div>
     </div>
   </div>
