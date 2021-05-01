@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.teamthree.models.User;
 import com.teamthree.service.HelpDesk;
 
 public class SessionController {
@@ -50,6 +51,30 @@ public class SessionController {
 		}
 		else {
 			resp.getWriter().write("customer");			
+		}
+		
+		
+	}
+	
+	
+	public void getAllUserInfo(HttpServletRequest req, HttpServletResponse resp) throws JsonProcessingException, IOException {
+		
+		
+		HttpSession session = req.getSession(false);
+		
+		if (session == null) {
+			resp.setStatus(213);
+			return;
+		}
+		
+		else {
+			User sessionUserOBJFORM = new User((String)session.getAttribute("username"), (String)session.getAttribute("password"), 
+					(String)session.getAttribute("dateOfBirth"), 
+					(String)session.getAttribute("accessLevel"),
+					(String)session.getAttribute("firstName"), (String)session.getAttribute("lastName")
+					);
+			ObjectMapper om = new ObjectMapper();
+			resp.getWriter().write(om.writeValueAsString(sessionUserOBJFORM));			
 		}
 		
 		

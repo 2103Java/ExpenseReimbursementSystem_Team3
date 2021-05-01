@@ -17,8 +17,6 @@ public class MainDriver {
 		
 		System.out.println("Hi");
 		
-		Connection aConnection = Connector.getConnection();
-		
 		UserDaoImpl userDao = new UserDaoImpl();
 		TicketDaoImpl ticketDao = new TicketDaoImpl();
 		
@@ -68,5 +66,8 @@ public class MainDriver {
 			System.out.println("TICKET AMOUNT: "+t.getReimburseAmount());
 			System.out.println("TICKET STATUS: "+t.getStatus());
 		}
+		
+		Ticket someTicket = helpDesk.getTicketByID(3);
+		System.out.println("someTicket = "+someTicket);
 	}
 }

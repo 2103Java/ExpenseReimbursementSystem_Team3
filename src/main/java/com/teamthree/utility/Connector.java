@@ -18,8 +18,8 @@ public class Connector {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("Could not connect");
+			//e.printStackTrace();
+			//System.out.println("Could not connect");
 		}
 		
 		return conn;

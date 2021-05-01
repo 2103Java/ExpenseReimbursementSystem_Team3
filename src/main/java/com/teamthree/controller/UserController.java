@@ -19,33 +19,74 @@ public class UserController {
 	}
 	
 	
+	public boolean createNewUser(HttpServletRequest req, HttpServletResponse resp) {
+		
+		System.out.println("xXxXxXxXxXxXxXxXxXxX\nUSER CONTROLLER CLASS\nxXxXxXxXxXxXxXxXxXxX");
+		System.out.println("createNewUser()");
+		String newUsername = req.getParameter("username");
+		String newPassword = req.getParameter("password");
+		String newDateOfBirth = req.getParameter("dOB");
+		String newAccessCode = req.getParameter("accessCode");
+		String newFirstName = req.getParameter("firstName");
+		String newLastName = req.getParameter("lastName");
+		newDateOfBirth = "01/01/2000";
+		
+		System.out.println("newUsername = "+newUsername);
+		System.out.println("newPassword = "+newPassword);
+		System.out.println("newAccessCode = "+newAccessCode);
+		System.out.println("newFirstName = "+newFirstName);
+		System.out.println("newLastName = "+newLastName);
+		
+		// Find if this username is available
+		boolean usernameAvailable = helpDesk.isUsernameAvailable(newUsername);
+		
+		if (!usernameAvailable) {
+			resp.setStatus(213);
+			return false;
+		}
+		String newAccessLevel;
+		if (Integer.parseInt(newAccessCode) == RequestHelper.employeeAccessCode) {
+			newAccessLevel = "customer";
+		}
+		else if (Integer.parseInt(newAccessCode) == RequestHelper.adminAccessCode) {
+			newAccessLevel = "customer";
+		}
+		else {
+			resp.setStatus(217);
+			return false;
+		}
+		helpDesk.createNewUser(newUsername, newPassword, newDateOfBirth, newAccessLevel, newFirstName, newLastName);
+		
+		return true;
+	}
 	
-	
-	public void createNewUser(HttpServletRequest req, HttpServletRequest resp) {
+	public void deleteUser(HttpServletRequest req, HttpServletResponse resp) {
 		
 	}
 	
-	public void deleteUser(HttpServletRequest req, HttpServletRequest resp) {
+	public void updateUser(HttpServletRequest req, HttpServletResponse resp) {
 		
 	}
 	
-	public void updateUser(HttpServletRequest req, HttpServletRequest resp) {
-		
-	}
-	
-	public void getUser(HttpServletRequest req, HttpServletRequest resp) {
+	public void getUser(HttpServletRequest req, HttpServletResponse resp) {
 		
 	}
 	
 	
 	public void goToUserHomePage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println("UserController --> goToUserPage()");
-		System.out.println("\nARG");
-		RequestDispatcher userHomeDispatcher = req.getRequestDispatcher("/OLD_userhome.html");
+		System.out.println("UserController --> goToUserPage()");		
+		RequestDispatcher userHomeDispatcher = req.getRequestDispatcher("/userhome.html");
 		userHomeDispatcher.forward(req, resp);
 		
 	}
 	
+	public void goToViewAllTicketsPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		System.out.println("UserController --> goToViewAllTicketsPage()");
+		RequestDispatcher userHomeDispatcher = req.getRequestDispatcher("/ADMINalltickets.html");
+		userHomeDispatcher.forward(req, resp);
+		
+	}
 	
 }

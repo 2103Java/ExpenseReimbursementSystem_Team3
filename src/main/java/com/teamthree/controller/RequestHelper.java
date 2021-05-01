@@ -9,8 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.teamthree.dao.TicketDaoImpl;
 import com.teamthree.dao.UserDaoImpl;
 import com.teamthree.service.HelpDesk;
+import com.teamthree.utility.Connector;
 
 public class RequestHelper {
+	
+	static final public int employeeAccessCode = 10;
+	static final public int adminAccessCode = 12;
+	
 	
 	// Repository Layer
 	private UserDaoImpl userDao;
@@ -26,6 +31,8 @@ public class RequestHelper {
 	private SessionController sessionController;
 	private LogInController logInController;
 	private RegistrationController registrationController;
+	
+	private boolean firstRequest = true;
 	
 	
 	
@@ -54,6 +61,10 @@ public class RequestHelper {
 		String uri = req.getRequestURI();
 		String method = req.getMethod();
 
+		if (firstRequest) {
+			Connector.getConnection();
+			firstRequest = false;
+		}
 		/*
 		 *
 		 * URL SUMMARY:
@@ -124,6 +135,24 @@ public class RequestHelper {
 			}
 
 			break;
+
+		// ADMIN OPTION
+		case "/ERS/site/AllTickets":
+			System.out.println("ADMIN VIEW ALL TICKETS SCREEN");
+			
+			this.disablePageCaching(resp);
+			
+			switch (method) {
+			
+				case "GET":	
+				case "POST":
+				
+					userController.goToViewAllTicketsPage(req,resp);
+					break;
+				
+			}
+
+			break;
 			
 		case "/ERS/site/RegistrationComplete":
 			
@@ -177,23 +206,23 @@ public class RequestHelper {
 			
 
 		case "/ERS/api/user":
-			
+			this.disablePageCaching(resp);
 			switch(method) {
 			
 			case "GET":
-				userController.getUser(req, req);
+				userController.getUser(req, resp);
 				break;
 				
 			case "POST":
-				userController.createNewUser(req, req);
+				userController.createNewUser(req, resp);
 				break;
 				
 			case "UPDATE":
-				userController.updateUser(req, req);
+				userController.updateUser(req, resp);
 				break;
 				
 			case "DELETE":
-				userController.deleteUser(req, req);
+				userController.deleteUser(req, resp);
 				break;
 				
 			}
@@ -202,24 +231,17 @@ public class RequestHelper {
 			
 			
 		case "/ERS/api/ticket":
-			
+			this.disablePageCaching(resp);
 			switch(method) {
 			
 			case "GET":
-				ticketController.getTicket(req, req);
+				ticketController.getTicket(req, resp);
 				break;
 				
 			case "POST":
-				ticketController.createNewTicket(req, req);
+				ticketController.createOrUpdateTicket(req, resp);
 				break;
-				
-			case "UPDATE":
-				ticketController.updateTicket(req, req);
-				break;
-				
-			case "DELETE":
-				ticketController.deleteTicket(req, req);
-				break;
+			
 				
 			}
 			break;
@@ -258,13 +280,16 @@ public class RequestHelper {
 				
 				case "GET":
 					System.out.println("Session API: Get");
-					String mode = req.getParameter("mode");
+					String mode = req.getHeader("mode");
 					System.out.println("mode is = "+mode);
 					if (mode.equals("getAccessLevel")) {
 						sessionController.getAccessLevel(req, resp);	
 					}
 					else if (mode.equals("getUsername")){
 						sessionController.getUserForSession(req, resp);
+					}
+					else if (mode.equals("getUserInfo")) {
+						sessionController.getAllUserInfo(req, resp);
 					}
 					break;
 					
@@ -280,6 +305,7 @@ public class RequestHelper {
 			
 		default:
 			System.out.println("DEFAULT PAGE");
+			this.disablePageCaching(resp);
 			resp.sendRedirect("http://localhost:9500/ERS/home.html");
 		}
 	}

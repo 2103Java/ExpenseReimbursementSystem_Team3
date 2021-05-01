@@ -23,7 +23,12 @@ public class HelpDesk implements ServiceLayer {
 	
 	public boolean tryLogIn(String username, String password) {
 
-		if (username.equals(testUsername) && password.equals(testPassword)) {
+		User user = findUser(username);
+		
+		if (user == null) {
+			return false;
+		}
+		if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
 			return true;
 		}
 		return false;
@@ -53,12 +58,17 @@ public class HelpDesk implements ServiceLayer {
 		return ticketDao.getTicketsForUsername(username);
 		
 	}
+
+	public Ticket getTicketByID(int id) {
+		Ticket t = ticketDao.getTicketFromID(id);
+		return t; 
+	}
 	
 	public boolean generateTicket(String username, double amount, String description, String type) {
 		
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
-		Ticket newTicket = new Ticket(-1, "pending", amount, timestamp, description, username, type);
+		Ticket newTicket = new Ticket(-1, "Pending", amount, timestamp, description, username, type);
 		
 		return ticketDao.addTicket(newTicket);
 	}
@@ -81,5 +91,15 @@ public class HelpDesk implements ServiceLayer {
 
 	public ArrayList<Ticket> getAllTickets() {
 		return ticketDao.getAllTickets();
+	}
+
+	public boolean isUsernameAvailable(String newUsername) {
+		
+		User currentUserWithThisUsername = userDao.getUserFromUsername(newUsername);
+		if (currentUserWithThisUsername == null) {
+			return true;
+		}
+		return false;
+
 	}
 }

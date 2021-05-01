@@ -11,27 +11,30 @@
     <title>Money Please</title>
 </head>
 
-<body class="bg-success">
+<body style="background-image: url('https://coolbackgrounds.io/images/backgrounds/index/sea-edge-79ab30e2.png'); background-size: 1920px 1080px;  background-attachment: fixed;">
 
-<div class="container my-4 bg-secondary bg-gradient">
-  <h2><strong>JCorp Expense Reimbursement System
-    </strong></h2>
+<div class="container p-3 mb-2" style="background-color: rgb(10,10,20,0.78); margin-top: 40px;">
+  <h1 style="color: aliceblue;"><strong>Expense Reimbursement System
+    </strong></h1>
 
-	<a href="https://mdbootstrap.com/docs/standard/forms/overview/" target="_blank">Click here for help</a>
 
-  <hr>
+<br>
   
-  <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+  
+  <div id="signupbox" style="margin: 0 0" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
     <div class="panel panel-info">
       <div class="panel-heading">
         
 		
-		<div class="panel-title" style="font-size: large;">Sign Up</div>
+		<h2 class="panel-title" style="color: aliceblue;">Register</h2>
 		<div style="font-size: 85%;"><a id="signinlink" href="http://localhost:9500/ERS/site/Home">Back</a></div>
         
       </div>
       <div class="panel-body" >
-        <form id="signupform" class="form-horizontal" role="form">
+
+
+        <!-- FORM BEGIN -->
+        <div id="signupform" class="form-horizontal" role="form" style="color:aliceblue">
 
           <div id="signupalert" style="display:none" class="alert alert-danger">
             <p>Error:</p>
@@ -39,35 +42,35 @@
           </div>
 
           <div class="form-group" id="email">
-            <label for="email" class="col-md-3 control-label">Email</label>
+            <label for="username" class="col-md-3 control-label">Username</label>
             <div class="col-md-9">
-              <input type="text" class="form-control" name="email" placeholder="Email Address">
+              <input type="text" id = "usernameID" class="form-control" name="username" placeholder="Username">
             </div>
           </div>
 
           <div class="form-group" id="firstname">
             <label for="firstname" class="col-md-3 control-label">First Name</label>
             <div class="col-md-9">
-              <input type="text" class="form-control" name="firstname" placeholder="First Name">
+              <input type="text" id = "firstNameID" class="form-control" name="firstname" placeholder="First Name">
             </div>
           </div>
           <div class="form-group" id="lastname">
             <label for="lastname" class="col-md-3 control-label">Last Name</label>
             <div class="col-md-9">
-              <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+              <input type="text" id = "lastNameID" class="form-control" name="lastname" placeholder="Last Name">
             </div>
           </div>
           <div class="form-group" id="password">
             <label for="password" class="col-md-3 control-label">Password</label>
             <div class="col-md-9">
-              <input type="password" class="form-control" name="passwd" placeholder="Password">
+              <input type="password" id = "passwordID" class="form-control" name="password" placeholder="Password">
             </div>
           </div>
 
           <div class="form-group" id="icode">
             <label for="icode" class="col-md-3 control-label">Invitation Code</label>
             <div class="col-md-9">
-              <input type="text" class="form-control" name="icode" placeholder="">
+              <input type="text" id = "accessCodeID" class="form-control" name="icode" placeholder="">
             </div>
           </div>
 
@@ -81,10 +84,14 @@
 					<div style="border-top: 1px solid #999; padding-top:20px"  class="form-group">
 				</div>
 
+
+        <!-- Register status message -->
+        <p id="registerStatusMessage" style="text-align: center; font-size: large;"></p>
+        
 				</div>
 
 				<div style="text-align: center;">
-                    <button id="btn-signup" type="button" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
+                    <button id="btn-signup" type="button" class="btn btn-info" onclick="registerNewUser()">Sign Up</button>
 			    </div>
 
             </div>
@@ -98,6 +105,7 @@
 
 
 
+<script src = "http://localhost:9500/ERS/register.js"></script>
 
 
 </body>

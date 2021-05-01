@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JCorp ERS</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <link rel="stylesheet" href="mystylesheet.css">
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+
+  <link href="http://localhost:9500/ERS/ticketstable.css" rel="stylesheet">
+
+
+  <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <script src = "http://localhost:9500/ERS/AUTHENTICATION.js"></script>
+  
+</head>
+
+
+<body onload="hide_table()" style="background-image: url('https://static.vecteezy.com/system/resources/previews/000/543/628/original/blue-abstract-background-vector.jpg'); background-size: 1920px 1080px;  background-attachment: fixed;">
+
+<div class="d-flex" >
+  
+
+  <div class="dropdown">
+    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="employee_dropdown_menu" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="https://toppng.com/uploads/preview/user-account-management-logo-user-icon-11562867145a56rus2zwu.png" alt="" width="32" height="32" class="rounded-circle me-2">
+      <strong id="userCorner" style="color:black;">Admin</strong>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+      <li><a class="dropdown-item" href="http://localhost:9500/ERS/site/UserHome" id="view_tickets">View My Tickets</a></li>
+      <li><a class="dropdown-item" href="http://localhost:9500/ERS/site/AllTickets" id="view_all_tickets">Approve/Deny Tickets (ADMIN)</a></li>
+      
+      <li><a class="dropdown-item" href="#" id="submit_ticket" data-bs-toggle="modal" data-bs-target="#submit_form_modal" data-bs-whatever="Please fill out info">Submit Ticket</a></li>
+      <li><a class="dropdown-item" href="#"></a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a id="signOutButton" class="dropdown-item" href="#" onclick="logOut()">Sign out</a></li>
+    </ul>
+  </div>
+  
+</div>
+
+							<!--    Main Greeting      -->
+<h1 id="mainGreeting" style="text-align: center;"> </h1>
+
+							<!--    Access Level Display      -->
+<h3 id="accessLevelDisplayGreeting" style="text-align: center;">            </h3>
+
+<br>
+<br>
+<br>
+<br>
+<h1 style="text-align:center">All expense requests:</h1>
+
+
+
+
+
+<!--
+	TICKET TABLE
+-->
+
+<table id="tickets_table"  class="table table-hover">
+
+	<caption style="caption-side: top;">
+	  <span>Filter by: </span>
+	  <span style="margin-left: 15px;"><input type="checkbox" id="showStatusPending" checked="true" onchange="generateTicketTable()"> <label for="showStatusPending">Pending</label></span>
+	  <span style="margin-left: 10px;"><input type="checkbox" id="showStatusApproved" checked="true" onchange="generateTicketTable()"> <label for="showStatusApproved">Approved</label></span>
+	  <span style="margin-left: 10px;"><input type="checkbox" id="showStatusDenied" checked="true" onchange="generateTicketTable()"> <label for="showStatusDenied">Declined</label></span>
+	</caption>
+  
+	<caption>Tickets</caption>
+	  <thead class="thead">
+		
+		<tr>
+		  <th scope="col" style="width:5%;">ID</th>
+		  <th scope="col" style="width:10%;">Type</th>
+		  <th scope="col" style="width:21%;">Status</th>
+		  <th scope="col" style="width:12%;">Amount (USD)</th>
+		  <th scope="col" style="width:19%;">Date Submitted</th>
+		  <th scope="col" style="width: 32%;">Description</th>
+		  <th scope="col" style="width: 15%;">User</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<tr>
+		  <th scope="row">1</th>
+		  <td>Mark</td>
+		  <td>Otto</td>
+		  <td>@mdo</td>
+		  <td>@mdo</td>
+		  <td>@mdo</td>
+		  <td>@mdo</td>
+		</tr>
+		
+	  </tbody>
+	  
+	</table>
+  
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="submit_form_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color: rgba(223, 220, 236, 0.94);">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Ticket</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <select class="form-select" aria-label="Default select example" id="select_box">
+              <option selected>Please choose Reimbursement Type:</option>
+              <option value="Lodging">LODGING</option>
+              <option value="Travel">TRAVEL</option>
+              <option value="Food">FOOD</option>
+              <option value="Other">OTHER</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="reimbursement_amount" class="col-form-label">Reimbursement Amount (in $)</label>
+            <input type="text" class="form-control" id="reimburse_amount">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Additional Description</label>
+            <textarea class="form-control" id="description_text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <!--				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="submitTicket()">Submit Ticket</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="http://localhost:9500/ERS/ADMINticketstable.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+
+
+
+
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,37 @@
+
+
+
+
+/*
+    Style for table
+*/
+table.table.table-hover {
+    width:80%;
+    margin:0 auto;
+    background-color: rgba(236, 232, 209, 0.685); 
+    visibility: hidden;
+    color:black;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+
+/*
+    Style for table header
+*/
+table.table.table-hover th{
+    color:rgb(245, 241, 208);
+    background-color: rgba(0, 0, 0, 0.685); 
+
+}
+
+/*
+    Style for table row moused over
+*/
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    color: rgb(71, 69, 80);
+    
+  }
+
+  

@@ -27,6 +27,7 @@ public class TicketDaoImpl implements TicketDao {
 			ResultSet rsREAD = psREAD.executeQuery();
 			
 			while (rsREAD.next()) {
+				//System.out.println("THIS TICKETS TIME STAMP: "+rsREAD.getTimestamp("time_stamp"));
 				Ticket aTicket = new Ticket(
 									rsREAD.getInt("ticket_id"),
 									rsREAD.getString("status"),
@@ -168,5 +169,43 @@ public class TicketDaoImpl implements TicketDao {
 		}
 		
 		return allTickets;
+	}
+	
+	public Ticket getTicketFromID(int id) {
+	
+		System.out.println(("TicketDaoImpl: id = "+id));
+			String sqlRead = "SELECT * FROM tickets where ticket_id = (?)";
+			PreparedStatement psREAD;
+			
+			try(Connection conn = Connector.getConnection()) {
+				
+				psREAD = conn.prepareStatement(sqlRead);
+				psREAD.setInt(1, id);
+				ResultSet rsREAD = psREAD.executeQuery();
+				
+				while (rsREAD.next()) {
+					Ticket aTicket = new Ticket(
+										rsREAD.getInt("ticket_id"),
+										rsREAD.getString("status"),
+										rsREAD.getDouble("amount"),
+										rsREAD.getTimestamp("time_stamp"),
+										rsREAD.getString("description"),
+										rsREAD.getString("username_fk"),
+										rsREAD.getString("type")
+							);
+							
+					return aTicket;
+					
+				}
+				
+				
+			} catch (SQLException e) {
+		
+		//		e.printStackTrace();
+			//	System.out.println("==> could not find user with username"+username);
+			}
+			
+			return null;
+		
 	}
 }

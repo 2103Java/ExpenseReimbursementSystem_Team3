@@ -4,6 +4,7 @@
 
 	console.log("LOGGED_IN_AUTHORIZATION");
    
+   
     let sessionURL = "http://localhost:9500/ERS/util/session";
     let xhttp = new XMLHttpRequest();
 
@@ -14,15 +15,16 @@
             let accessLevel = xhttp.responseText
             console.log("Access level: "+accessLevel);
             // REDIRECT TO LOG IN IF NOT LOGGED IN
-            if (accessLevel == "none") {
+            if (accessLevel != "customer" && accessLevel != "admin") {
                 location.href = "http://localhost:9500/ERS/site/Home";            
             }
             
         }
     }
 
-    xhttp.open("GET",sessionURL + "?mode=getAccessLevel",false);
+    xhttp.open("GET",sessionURL,false);
+    xhttp.setRequestHeader("mode","getAccessLevel");
     xhttp.send();
-
+   
 
 
