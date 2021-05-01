@@ -18,6 +18,7 @@ window.addEventListener("load",
     var currentPageURL = window.location.href;
     console.log(currentPageURL);
     
+    document.getElementById("userCorner").innerHTML = window.localStorage.getItem("username");
     fetchAllTickets();
     
     

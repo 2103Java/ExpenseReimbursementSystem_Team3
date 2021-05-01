@@ -100,6 +100,8 @@ function() {
                 console.log(currentPageURL);
             
                 fetchAllTicketsForUsername(window.localStorage.getItem("username"));
+
+                document.getElementById("userCorner").innerHTML = window.localStorage.getItem("username");
                         
 
 
