@@ -49,3 +49,10 @@
 2021-05-02 21:55:53 INFO  HelpDesk:45 - --->  Successfully logged in as user cody29
 2021-05-02 21:57:18 INFO  HelpDesk:33 - Attempting to log in as user: sarah80
 2021-05-02 21:57:18 INFO  HelpDesk:45 - --->  Successfully logged in as user sarah80
+2021-05-03 04:30:13 INFO  LogInController:44 - Attempting to log in as user: bob23
+2021-05-03 04:30:13 INFO  LogInController:48 - --->  Successfully logged in as user bob23
+2021-05-03 04:30:37 INFO  LogInController:81 - --->  New ticket created for bob23 with amount = $24 and type = Travel
+2021-05-03 04:30:41 INFO  LogInController:81 - --->  User bob23 logged out.
+2021-05-03 04:30:46 INFO  LogInController:44 - Attempting to log in as user: cody29
+2021-05-03 04:30:46 INFO  LogInController:48 - --->  Successfully logged in as user cody29
+2021-05-03 04:31:01 INFO  LogInController:81 - --->  User cody29 logged out.
