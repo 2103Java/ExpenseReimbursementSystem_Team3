@@ -47,10 +47,10 @@ function handleGoToLogInPageButtonClick() {
         }
     }
 
+    var params = 'username='+tryUsername+'&password='+tryPassword;
     xhttp.open("POST",baseURL);
-    xhttp.setRequestHeader("username",tryUsername);
-    xhttp.setRequestHeader("password",tryPassword);
-    xhttp.send();
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.send(params);
 	
 }
 

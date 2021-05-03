@@ -84,11 +84,9 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 	
-	public boolean addUser(User u) {
+	public boolean addUser(String username, String password, String dOB, String accessLevel, String fName, String lName) {
 		
-		if (u == null) {
-			return false;
-		}
+		User u = new User(username, password, dOB, accessLevel, fName, lName);
 		
 		System.out.println("Dob to insert is "+u.getDateOfBirth());
 		String sqlRead = "INSERT INTO users values (?,?,?,?,?,?)";

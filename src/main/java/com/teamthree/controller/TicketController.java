@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teamthree.models.Ticket;
@@ -19,6 +21,8 @@ import com.teamthree.utility.Connector;
 public class TicketController {
 
 	HelpDesk helpDesk;
+	
+	public final static Logger logger = Logger.getLogger(LogInController.class);
 	
 	public TicketController(HelpDesk helpDesk) {
 		this.helpDesk = helpDesk;
@@ -43,8 +47,12 @@ public class TicketController {
 		
 
 		if (mode.equals("update")) {
+			
+			
+			
 			String ticketIDString = req.getParameter("ticketid");
 			String newTicketStatus = req.getParameter("status");
+			logger.info("--->  Finance manager "+req.getSession().getAttribute("username") + " updated status of ticket with id = "+ticketIDString + " to "+ newTicketStatus);
 			System.out.println("ticketid = "+ticketIDString);
 			if (ticketIDString == null) {
 				resp.setStatus(210);
@@ -69,6 +77,8 @@ public class TicketController {
 			String ticketType = req.getParameter("type");
 			String ticketAmountString = req.getParameter("amount");
 			String ticketDescription = req.getParameter("description");
+			
+			logger.info("--->  New ticket created for "+req.getSession().getAttribute("username") + " with amount = $"+ticketAmountString + " and type = "+ticketType);
 			
 			System.out.println("ticketType = "+ticketType);
 			System.out.println("ticketAmountString = "+ticketAmountString);
@@ -95,8 +105,15 @@ public class TicketController {
 		System.out.println("TicketController.class: getTicket()");
 		
 		
-		String mode = req.getHeader("mode");
+		String mode = req.getParameter("mode");
+		String mode2 = (String)req.getAttribute("mode");
+		String mode3 = req.getHeader("mode");
+		
+		
 		System.out.println("mode = "+mode);
+		System.out.println("mode2 = "+mode2);
+		System.out.println("mode3 = "+mode3);
+		System.out.println("mode4 = "+req.getParameter("username"));
 		
 		if (mode == null) {
 			System.out.println("Must pass in 'mode' = 'ticketid', 'username', or 'all'");
@@ -104,7 +121,7 @@ public class TicketController {
 			return;
 		}
 		if (mode.equals("ticketid")) {
-			String ticketID = req.getHeader("ticketid");
+			String ticketID = req.getParameter("ticketid");
 			System.out.println("ticketid = "+ticketID);
 			if (ticketID == null) {
 				setStatusInvalidArgs(resp);
@@ -112,7 +129,6 @@ public class TicketController {
 			}
 
 			Ticket t = helpDesk.getTicketByID(Integer.parseInt(ticketID));
-			System.out.println("t = "+t);
 			System.out.println("t.id = "+t.getId());
 			ObjectMapper om = new ObjectMapper();
 			resp.getWriter().write(om.writeValueAsString(t));
@@ -122,7 +138,7 @@ public class TicketController {
 		}
 		else if (mode.equals("username")) {
 			
-			String username = req.getHeader("username");
+			String username = req.getParameter("username");
 			if (username == null) {
 				setStatusInvalidArgs(resp);
 				return;

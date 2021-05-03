@@ -160,9 +160,11 @@ function fetchAllTickets() {
     let ticketURL = "http://localhost:9500/ERS/api/ticket";
 	
 
-    xhttp.open("GET",ticketURL);
-    xhttp.setRequestHeader("mode","all");
+    var params = 'mode=all';
+    xhttp.open("GET",ticketURL + "?" + params);
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send();
+    
 }
 
 

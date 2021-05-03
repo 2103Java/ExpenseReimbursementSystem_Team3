@@ -1,21 +1,25 @@
 package com.teamthree.driver;
 
-import java.sql.Connection;
 import java.util.ArrayList;
+
+import org.apache.log4j.Logger;
 
 import com.teamthree.dao.TicketDaoImpl;
 import com.teamthree.dao.UserDaoImpl;
 import com.teamthree.models.Ticket;
 import com.teamthree.models.User;
 import com.teamthree.service.HelpDesk;
-import com.teamthree.utility.Connector;
 
 public class MainDriver {
+
+	
 
 	
 	public static void main(String[] args) {
 		
 		System.out.println("Hi");
+		
+
 		
 		UserDaoImpl userDao = new UserDaoImpl();
 		TicketDaoImpl ticketDao = new TicketDaoImpl();
@@ -39,7 +43,7 @@ public class MainDriver {
 		
 		System.out.println("TESTING INSERTING A USER INTO DATABASE");
 		
-		userDao.addUser(new User("dadboy21","coolpassword","04/20/2011","admin","Mr.","Man"));
+		//userDao.addUser(new User("dadboy21","coolpassword","04/20/2011","admin","Mr.","Man"));
 		
 		
 		System.out.println("TESTING FETCHING TICKETS FOR A USERNAME");

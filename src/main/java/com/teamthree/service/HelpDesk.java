@@ -3,6 +3,8 @@ package com.teamthree.service;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import com.teamthree.dao.TicketDaoImpl;
 import com.teamthree.dao.UserDaoImpl;
 import com.teamthree.models.Ticket;
@@ -16,6 +18,9 @@ public class HelpDesk implements ServiceLayer {
 	private UserDaoImpl userDao;
 	private TicketDaoImpl ticketDao;
 	
+	public final static Logger logger = Logger.getLogger(HelpDesk.class);
+	
+	
 	public HelpDesk(UserDaoImpl userDao, TicketDaoImpl ticketDao) {
 		this.userDao = userDao;
 		this.ticketDao = ticketDao;
@@ -23,12 +28,21 @@ public class HelpDesk implements ServiceLayer {
 	
 	public boolean tryLogIn(String username, String password) {
 
+		System.out.println("TRY LOG IN METHOD");
+		
+		
+		
 		User user = findUser(username);
 		
+		
 		if (user == null) {
+		
+			
 			return false;
+			
 		}
 		if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
+			
 			return true;
 		}
 		return false;
@@ -48,8 +62,11 @@ public class HelpDesk implements ServiceLayer {
 	}
 	
 	public boolean createNewUser(String username, String password, String dOB, String accessLevel, String fName, String lName) {
-		User newUser = new User(username, password, dOB, accessLevel, fName, lName);
-		boolean addedUser = userDao.addUser(newUser);
+		if (username.equals("") || password.equals("") || dOB.equals("") || accessLevel.equals("") || fName == "" || lName.equals("")) {
+			return false;
+		}
+		boolean addedUser = userDao.addUser(username, password, dOB, accessLevel, fName, lName);
+		
 		return addedUser;
 	}
 	
@@ -60,6 +77,9 @@ public class HelpDesk implements ServiceLayer {
 	}
 
 	public Ticket getTicketByID(int id) {
+		if (id < 0) {
+			return null;
+		}
 		Ticket t = ticketDao.getTicketFromID(id);
 		return t; 
 	}
@@ -68,9 +88,7 @@ public class HelpDesk implements ServiceLayer {
 		
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
-		Ticket newTicket = new Ticket(-1, "Pending", amount, timestamp, description, username, type);
-		
-		return ticketDao.addTicket(newTicket);
+		return ticketDao.addTicket("Pending", amount, timestamp, description, username, type);
 	}
 	
 	public boolean deleteTicket(Ticket t) {

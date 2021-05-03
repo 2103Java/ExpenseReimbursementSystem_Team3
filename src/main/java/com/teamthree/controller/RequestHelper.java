@@ -163,18 +163,6 @@ public class RequestHelper {
 			break;
 			
 			
-		case "/ERS/site/ForgotPassword":
-			
-			this.disablePageCaching(resp);
-			logInController.goToForgotPasswordPage(req, resp);
-			break;
-			
-		case "/ERS/site/EmailSent":
-			
-			this.disablePageCaching(resp);
-			logInController.goToRecoveryEmailSendPage(req,resp);
-			break;
-			
 			
 		case "/ERS/site/CreateTicket":
 			

@@ -7,12 +7,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.teamthree.service.HelpDesk;
 
 public class UserController {
 
 	
 	private HelpDesk helpDesk;
+	
+	public final static Logger logger = Logger.getLogger(UserController.class);
 	
 	public UserController(HelpDesk helpDesk) {
 		this.helpDesk = helpDesk;
@@ -21,8 +25,7 @@ public class UserController {
 	
 	public boolean createNewUser(HttpServletRequest req, HttpServletResponse resp) {
 		
-		System.out.println("xXxXxXxXxXxXxXxXxXxX\nUSER CONTROLLER CLASS\nxXxXxXxXxXxXxXxXxXxX");
-		System.out.println("createNewUser()");
+		System.out.println("xXxXxXxXxXxXxXxXxXxX\n CREATE NEW USER METHOD \nxXxXxXxXxXxXxXxXxXxX");
 		String newUsername = req.getParameter("username");
 		String newPassword = req.getParameter("password");
 		String newDateOfBirth = req.getParameter("dOB");
@@ -41,7 +44,11 @@ public class UserController {
 		boolean usernameAvailable = helpDesk.isUsernameAvailable(newUsername);
 		
 		if (!usernameAvailable) {
+			
+			
+			logger.info("Could not register with username = "+newUsername+". It already exists.");
 			resp.setStatus(213);
+			
 			return false;
 		}
 		String newAccessLevel;
@@ -49,13 +56,15 @@ public class UserController {
 			newAccessLevel = "customer";
 		}
 		else if (Integer.parseInt(newAccessCode) == RequestHelper.adminAccessCode) {
-			newAccessLevel = "customer";
+			newAccessLevel = "admin";
 		}
 		else {
 			resp.setStatus(217);
 			return false;
 		}
 		helpDesk.createNewUser(newUsername, newPassword, newDateOfBirth, newAccessLevel, newFirstName, newLastName);
+		
+		logger.info("Successfully registered new user with username = "+newUsername);
 		
 		return true;
 	}

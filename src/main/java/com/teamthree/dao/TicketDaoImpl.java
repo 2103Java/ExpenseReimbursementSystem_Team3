@@ -55,9 +55,11 @@ public class TicketDaoImpl implements TicketDao {
 	
 	
 	
-	public boolean addTicket(Ticket aTicket) {
+	public boolean addTicket(String status, double amount, Timestamp timestamp, String description, String username, String type) {
 		
 
+		Ticket aTicket = new Ticket(-1, status, amount, timestamp, description, username, type);
+		
 		String sqlRead = "INSERT INTO tickets (status, amount, time_stamp, description, type, username_fk) values (?,?,?,?,?,?)";
 		PreparedStatement pswrite;
 		

@@ -1,7 +1,7 @@
 console.log("IN USERHOME.JS FILE");
 
 
-var maxRowsPerTable = 10;
+
 var ticketList = [];
 
 var ticketModal = document.getElementById("submit_form_modal");
@@ -76,7 +76,15 @@ function() {
             var user = JSON.parse(xhttp.responseText);
             
             document.getElementById("mainGreeting").innerHTML = "Welcome, "+user.username+"!";
-            document.getElementById("accessLevelDisplayGreeting").innerHTML = "Access Level: " + user.accessLevel;
+
+            let accessLevelToDisplay;
+            if (user.accessLevel == "customer") {
+                accessLevelToDisplay = "employee"
+            }
+            else if (user.accessLevel == "admin") {
+                accessLevelToDisplay = "finance manager"
+            }
+            document.getElementById("accessLevelDisplayGreeting").innerHTML = "Access Level: " + accessLevelToDisplay;
             window.localStorage.setItem("accessLevel",user.accessLevel);
             window.localStorage.setItem("username",user.username);
             
@@ -89,7 +97,7 @@ function() {
                 newAnchor.setAttribute("href", "http://localhost:9500/ERS/site/AllTickets");
                 newAnchor.id = "view_all_tickets";
                 newAnchor.style = "visibility: visible;";
-                newAnchor.innerHTML = "Approve/Deny Tickets (ADMIN)";
+                newAnchor.innerHTML = "Approve/Deny Tickets (FINANCE MANAGER MODE)";
                 newLI.appendChild(newAnchor);
 
                 document.getElementById("view_tickets").insertAdjacentElement("afterend", newLI);
@@ -151,9 +159,9 @@ function fetchTicketByID(id) {
 	
 
     xhttp.open("GET",ticketURL);
-    xhttp.setRequestHeader("mode","ticketid")
-    xhttp.setRequestHeader("ticketid",id)
-    xhttp.send();
+    var params = 'mode=ticketid&ticketid='+id;
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.send(params);
 }
 
 
@@ -163,14 +171,22 @@ function fetchAllTicketsForUsername(username) {
 
     console.log("FETCH ALL TICKETS FOR A USER:");
     console.log("window.localStorage.getItem(username) = "+username);
+    
     let xhttp = new XMLHttpRequest()
+
     xhttp.onreadystatechange = function() {
 
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
-            let tickets = JSON.parse(xhttp.responseText);
-            console.log(tickets);
-            ticketList = tickets;
-            generateTicketTable();
+        if (xhttp.readyState == 4) {
+            if (xhttp.status != 200) {
+                console.log("RESPONSE RECEIEVED WITH STATUS "+xhttp.status);
+            }
+            else {
+                console.log("ALL TICKETS FOR USERNAME RESPONSE RECEIVED!!!")
+                let tickets = JSON.parse(xhttp.responseText);
+                console.log(tickets);
+                ticketList = tickets;
+                generateTicketTable();
+            }
             
         }
     }
@@ -178,9 +194,10 @@ function fetchAllTicketsForUsername(username) {
     let ticketURL = "http://localhost:9500/ERS/api/ticket";
 	
 
-    xhttp.open("GET",ticketURL);
-    xhttp.setRequestHeader("mode","username")
-    xhttp.setRequestHeader("username",username);
+    
+    var params = 'mode=username' + '&username='+username;
+    xhttp.open("GET",ticketURL + "?" + params);
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send();
 }
 
@@ -191,6 +208,7 @@ function fetchAllTicketsForUsername(username) {
 
 function generateTicketTable() {
 
+    console.log("generateTickets START with ticketList.size = "+ticketList.length);
     
     sortTicketsByIDAscending();
 
@@ -198,7 +216,7 @@ function generateTicketTable() {
     var newTBody = document.createElement('tbody');
     var oldTBody = document.getElementById("tickets_table").getElementsByTagName("tbody")[0];
 
-    console.log("oldTBody = "+oldTBody);
+    //console.log("oldTBody = "+oldTBody);
     
     
     var pendingEnabled = document.getElementById("showStatusPending").checked;
@@ -206,11 +224,15 @@ function generateTicketTable() {
     var deniedEnabled = document.getElementById("showStatusDenied").checked;
 
     if (ticketList.length == 0) {
-
         var noTicketsMessage = document.getElementById("noTicketsMessage");
         noTicketsMessage.style.visibility = "visible";
-
+        noTicketsMessage.style.fontSize = "22px";
     } 
+    else {
+        var noTicketsMessage = document.getElementById("noTicketsMessage");
+        noTicketsMessage.style.visibility = "hidden";
+    }
+
     for (let k = 0; k < ticketList.length; k++) {
         
         
@@ -268,12 +290,14 @@ function generateTicketTable() {
         
     }
 
-    console.log("OLD TABLE BODY: "+oldTBody);
+    //console.log("OLD TABLE BODY: "+oldTBody);
     oldTBody.innerHTML = newTBody.innerHTML;
 
     
     
     document.getElementById("tickets_table").style.visibility="visible";
+
+    
 }
 
 
@@ -308,55 +332,8 @@ function refreshTicketsTable() {
 }
 
 
+function getPageArrayIndex() {
+    console.log("getPageIndex()");
 
-//document.getElementById("ticketSubmissionForm").addEventListener('submit',
- //   event => {
- //       event.preventDefault();
- //   }
-//);
-
-//$('#submit_form_modal').on('shown.bs.modal',
-// function() {
-    
-   
-
-    /**
-     * Using AJAX to create a new ticket
-     */
-    /**
-    let newTicketURL = "http://localhost:9500/ERS/api/ticket";
-    let xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function() {
-
-        if (xhttp.readyState == 4 & xhttp.status == 200) {
-
-            // Fetch tickets for this user and redraw the table
-            fetchAllTicketsForUsername(window.localStorage.getItem("username"));
-            
-        }
-
-    }
-
-    xhttp.open("POST",newTicketURL);
-    xhttp.setRequestHeader("mode","create");
-    var inputBoxElement = document.getElementById("select-box");
-    var amountElement = document.getElementById("reimburse-amount");
-    var descriptionElement = document.getElementById("description");
-
-    console.log("inputBoxElement = "+inputBoxElement);
-    console.log("amountElement = "+amountElement);
-    console.log("descriptionElement = "+descriptionElement);
-
-    xhttp.setRequestHeader("type",document.getElementById("select-box").value);
-    xhttp.setRequestHeader("amount",document.getElementById("reimburse-amount").value);
-    xhttp.setRequestHeader("description-text",document.getElementById("description").value);
-    //xhttp.send();
-
-
-*/
-
-
-//}
-//);
-
+    return currentPage * maxRowsPerTable;
+}
