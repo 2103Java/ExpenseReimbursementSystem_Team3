@@ -1,4 +1,4 @@
-# Team3
+# Expense Reimbursement System
 Expense Reimbursement System
 by Ben Markos & David (Team 3)
 
