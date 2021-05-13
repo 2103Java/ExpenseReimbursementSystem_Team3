@@ -1,6 +1,6 @@
 # Expense Reimbursement System
 Expense Reimbursement System
-by Ben Markos & David (Team 3)
+by Ben Markos & David Nhem (Team 3)
 
 With our Expense Reimbursement System (ERS), a user can:
 
