@@ -11,8 +11,14 @@ With our Expense Reimbursement System (ERS), a user can:
 * A financial manager has an additional page they can access in order to view requests and approve or deny them
 * A user can filter their view of tickets by pending, approved, or declined status
 
-Written in Javascript, HTML, CSS
-Using Bootstrap for styling
-We utilize mostly asynchronous HTTP requests via AJAX, but occasional synchronous requests are made when needing to re-authorize
+Written in Javascript, HTML, CSS.
+Using Bootstrap for styling.
+We utilize mostly asynchronous HTTP requests via AJAX, but occasional synchronous requests are made when needing to re-authorize.
+Deployed as a .war on an Apache Tomcat Server running locally.
+Maven is used for dependencies, including:
+* JUnit
+* Mockito
+* Log4j
+* Jdbc, PostgreSQL
 
    
