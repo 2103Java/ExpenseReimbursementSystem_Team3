@@ -2,6 +2,8 @@
 
 ## Project Description
 
+Our Expense Reimbursement System (ERS) allows an employee to submit money reimbursement requests for different purposes (food, traveling, lodging, or other).
+A finanace manager can then approve or deny these requests. To perform these functions, both employees and finance managers register for and sign in with an account.
 
 ## Technologies Used
 * Javascript
@@ -24,6 +26,9 @@ With our Expense Reimbursement System, a user can:
 * When signed in, a user can view a table of all their requests.
 * A financial manager has an additional page they can access in order to view requests and approve or deny them.
 * A user can filter their view of tickets by pending, approved, or declined status.
+
+To-do's:
+* Allow a finance manager to specify a reasion for approval or denial of a request.
 
 ## Getting Started
 
