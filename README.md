@@ -75,6 +75,28 @@ Upon logging in (with a newly created 'financial manager' account), this will be
 
 ![image](https://user-images.githubusercontent.com/47725693/119022490-53e12980-b966-11eb-9c5b-7b96428cc169.png)
 
+Now, click the user icon in the upper-left corner of the page, and you will see the following (as a financial manager):
+
+![image](https://user-images.githubusercontent.com/47725693/119022810-a15d9680-b966-11eb-8dda-c72de150b109.png)
+
+The only difference as an 'employee' is that the 'Approve/Deny Tickets (FINANCE MANAGER MODE)' option does not appear:
+
+     picture of that here
+     
+     
+To submit an expense reimbursement request, click 'Submit Ticket', and the following will appear:
+
+![image](https://user-images.githubusercontent.com/47725693/119023060-f39eb780-b966-11eb-9456-eabca7c73d5b.png)
+
+Enter in the following: 
+* A reimbursement request type (Lodging, Travel, Food, or Other)
+* An amount to be reimbursed
+* A description
+
+Then click Submit Ticket, and your table will be updated:
+
+![image](https://user-images.githubusercontent.com/47725693/119023299-47a99c00-b967-11eb-9c9d-077dcc7d5922.png)
+
 
 
 
