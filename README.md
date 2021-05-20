@@ -81,7 +81,8 @@ Now, click the user icon in the upper-left corner of the page, and you will see 
 
 The only difference as an 'employee' is that the 'Approve/Deny Tickets (FINANCE MANAGER MODE)' option does not appear:
 
-     picture of that here
+![image](https://user-images.githubusercontent.com/47725693/119023603-bedf3000-b967-11eb-9f72-aaa11ca402c6.png)
+
      
      
 To submit an expense reimbursement request, click 'Submit Ticket', and the following will appear:
@@ -89,9 +90,9 @@ To submit an expense reimbursement request, click 'Submit Ticket', and the follo
 ![image](https://user-images.githubusercontent.com/47725693/119023060-f39eb780-b966-11eb-9456-eabca7c73d5b.png)
 
 Enter in the following: 
-* A reimbursement request type (Lodging, Travel, Food, or Other)
-* An amount to be reimbursed
-* A description
+* A reimbursement request type (Lodging, Travel, Food, or Other).
+* An amount to be reimbursed.
+* A description.
 
 Then click Submit Ticket, and your table will be updated:
 
