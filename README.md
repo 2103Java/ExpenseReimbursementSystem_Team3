@@ -26,6 +26,10 @@ With our Expense Reimbursement System, a user can:
 * A user can filter their view of tickets by pending, approved, or declined status.
 
 ## Getting Started
+To get this project on your machine, run the following command:
+
+       git clone url
+
 
 ## Usage
 
