@@ -28,7 +28,7 @@ With our Expense Reimbursement System, a user can:
 ## Getting Started
 To get this project on your machine, run the following command:
 
-       git clone https://github.com/2103Java/ExpenseReimbursementSystem_Team3
+       git clone https://github.com/2103Java/ExpenseReimbursementSystem_Team3 
 
 
 ## Usage
