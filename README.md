@@ -56,8 +56,27 @@ This will take you to the Expense Reimbursement System home page.
 Upon entering in the URL above,
 you will be welcomed with the sign-in page:
 
+![image](https://user-images.githubusercontent.com/47725693/119022006-b980e600-b965-11eb-9baf-b78bd0ed39a0.png)
+
 Click 'Sign up here!' to be taken to the Registration page:
-![image](https://user-images.githubusercontent.com/47725693/119021960-a8d07000-b965-11eb-8173-924e861c28ef.png)
+
+![image](https://user-images.githubusercontent.com/47725693/119022070-cd2c4c80-b965-11eb-9a3b-dac14cb6f745.png)
+
+
+Enter a desired username, password, and use one the following invitation codes:
+* 10 to register as 'employee'
+* 12 to register as 'financial manager'
+
+Click 'Sign Up' to complete registration.
+
+Back on the Home page, login with your username and password.
+
+Upon logging in (with a newly created 'financial manager' account), this will be your user home page:
+
+![image](https://user-images.githubusercontent.com/47725693/119022490-53e12980-b966-11eb-9c5b-7b96428cc169.png)
+
+
+
 
 
 ## Contributors
