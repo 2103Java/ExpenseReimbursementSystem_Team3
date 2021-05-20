@@ -1,8 +1,22 @@
 # Expense Reimbursement System
-Expense Reimbursement System
-by Ben Markos & David Nhem (Team 3)
 
-With our Expense Reimbursement System (ERS), a user can:
+## Project Description
+
+
+## Technologies Used
+* Javascript
+* HTML
+* CSS
+* Bootstrap
+* Java
+* PostgreSQL
+* Apache Tomcat
+* JUnit.
+* Mockito.
+* Log4j.
+* Jdbc, PostgreSQL.
+## Features
+With our Expense Reimbursement System, a user can:
 
 * Register for an account, as an employee or financial manager.
 * Sign in to a user home page once they have registered.
@@ -11,14 +25,10 @@ With our Expense Reimbursement System (ERS), a user can:
 * A financial manager has an additional page they can access in order to view requests and approve or deny them.
 * A user can filter their view of tickets by pending, approved, or declined status.
 
-Written in Javascript, HTML, CSS.
-Using Bootstrap for styling.
-We utilize mostly asynchronous HTTP requests via AJAX, but occasional synchronous requests are made when needing to re-authorize.
-Deployed as a .war on an Apache Tomcat Server running locally.
-Maven is used for dependencies, including:
-* JUnit.
-* Mockito.
-* Log4j.
-* Jdbc, PostgreSQL.
+## Getting Started
 
+## Usage
+
+## Contributors
+Benjamin Markos, David Nhem
    
