@@ -98,6 +98,13 @@ Then click Submit Ticket, and your table will be updated:
 
 ![image](https://user-images.githubusercontent.com/47725693/119023299-47a99c00-b967-11eb-9c9d-077dcc7d5922.png)
 
+As as admin, you can approve/deny ticket requests.
+To do so, go back to the user icon in the upper left corner and click 'Approve/Deny Tickets (FINANCE MANAGER MODE)'.
+You will be taken to the following:
+
+![image](https://user-images.githubusercontent.com/47725693/119024464-b3403900-b968-11eb-8d25-c6f126638b39.png)
+
+To approve or deny a request, click the appropriate button.
 
 
 
