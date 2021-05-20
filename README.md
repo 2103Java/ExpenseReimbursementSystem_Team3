@@ -35,15 +35,21 @@ To get this project on your machine, enter a directory you want the project stor
 
        git clone https://github.com/2103Java/ExpenseReimbursementSystem_Team3 
        
-Open your IDE, and in your Tomcat's server.xml, select the port number you want this app to run on
+1) In your IDE, use its' import feature to bring in the project
 
-To start running the server from the IDE, hit the run button
+2) Still in the IDE, in your Tomcat's server.xml, select the port number you want this app to run on
+
+3) Open pom.xml under the ERS directory
+
+4) To start running the server from the IDE, hit your IDE's 'run' button, confirming the Tomcat server you want to run this app on
 
 In your Web browser, enter the following URL:
 
       http://localhost:{portNumberYouUsed}/ERS/site/home
 
 where {portNumberYouUsed} is the port number specified for Apache Tomcat to run on, above.
+
+This will take you to the Expense Reimbursement System home page.
 
 
 ## Usage
