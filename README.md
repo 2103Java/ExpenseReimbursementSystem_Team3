@@ -26,9 +26,24 @@ With our Expense Reimbursement System, a user can:
 * A user can filter their view of tickets by pending, approved, or declined status.
 
 ## Getting Started
-To get this project on your machine, run the following command:
+
+Before starting, you will need:
+* Apache Tomcat Verion 9.x.
+* A Java IDE such as: Spring Tool Suite, Eclipse, etc.
+
+To get this project on your machine, enter a directory you want the project stored in and run the following command:
 
        git clone https://github.com/2103Java/ExpenseReimbursementSystem_Team3 
+       
+Open your IDE, and in your Tomcat's server.xml, select the port number you want this app to run on
+
+To start running the server from the IDE, hit the run button
+
+In your Web browser, enter the following URL:
+
+      http://localhost:{portNumberYouUsed}/ERS/site/home
+
+where {portNumberYouUsed} is the port number specified for Apache Tomcat to run on, above.
 
 
 ## Usage
